@@ -2,6 +2,14 @@ const selecoes = [
   {id: 'BRA', nome: 'Brasil', rank: 1, conf: 'CONMEBOL'},
   {id: 'BEL', nome: 'Bélgica', rank: 2, conf: 'UEFA'},  
   {id: 'ARG', nome: 'Argentina', rank: 3,  conf: 'CONMEBOL'},
+  {id: 'URU', nome: 'Uruguai', rank: 13,  conf: 'CONMEBOL'},
+  {id: 'COL', nome: 'Colômbia', rank: 17,  conf: 'CONMEBOL'},
+  {id: 'PER', nome: 'Peru', rank: 21,  conf: 'CONMEBOL'},
+  {id: 'CHI', nome: 'Chile', rank: 29,  conf: 'CONMEBOL'},
+  {id: 'ECU', nome: 'Equador', rank: 44,  conf: 'CONMEBOL'},
+  {id: 'PAR', nome: 'Paraguai', rank: 50,  conf: 'CONMEBOL'},
+  {id: 'VEN', nome: 'Venezuela', rank: 56,  conf: 'CONMEBOL'},
+  {id: 'BOL', nome: 'Bolívia', rank: 81,  conf: 'CONMEBOL'},
   {id: 'SMR', nome: 'San Marino', rank: 211,  conf: 'UEFA'},
 ]
 
@@ -115,7 +123,7 @@ const quantosGols = (porcentagem) => {
     novo = porcentagem();
     if (novo) {
       contador += 1;
-    } if (contador > 6) {
+    } if (contador > 5) {
       return contador;
     }     
   }
@@ -123,11 +131,11 @@ const quantosGols = (porcentagem) => {
 }
 
 const novoGol = (timeA, timeB) => {
-    if (Math.abs(timeA.rank - timeB.rank) < 20) {
+    if (Math.abs(timeA.rank - timeB.rank) <= 10) {
     return quantosGols(teveGol40);
-  } else if (Math.abs(timeA.rank - timeB.rank) < 50) {
+  } else if (Math.abs(timeA.rank - timeB.rank) <= 50) {
     return quantosGols(teveGol50);
-  } else if (Math.abs(timeA.rank - timeB.rank) < 100) {
+  } else if (Math.abs(timeA.rank - timeB.rank) <= 100) {
     return quantosGols(teveGol60);
   } else {
     return quantosGols(teveGol70);
@@ -206,9 +214,9 @@ const comparaSeFoiGol = (gols) => {
     }
     console.log(`Time A: ${chanceA}`);
     console.log(`Time B: ${chanceB}`);
-    if (chanceA > chanceB) {
+    if (chanceA + 10 > chanceB) {
       golA += 1;
-    } else if (chanceB > chanceA) {
+    } else if (chanceB > chanceA + 10) {
       golB += 1
     }
   };
